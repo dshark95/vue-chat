@@ -71,8 +71,11 @@ import Pusher from 'pusher-js';
     export default {
         name: 'LazyChat',
         setup(){
-            const messages = ref([{"username":"user 1", "message":"test"}]);
-            const username = ref( "annoymouse");
+            const messages = ref(Array.from({ length: 5000 }, (k, v) => {
+                return {"username":"spam bot", "message": "spam".concat(v + 1)}
+                
+            }));
+            const username = ref( "anonymous");
             const message = ref("");
 
             onMounted(()=>{
@@ -113,13 +116,7 @@ import Pusher from 'pusher-js';
             benched: 0            
             
         }),
-        computed: {
-            items () {
-                return Array.from({ length: this.length }, (k, v) => v + 1)
-            },
-            length () {
-                return 7000
-            },
-        },
+        computed: {           
+        }
     }
 </script>
